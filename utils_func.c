@@ -1,4 +1,7 @@
 #include <ctype.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "monty.h"
 
 /**
@@ -21,6 +24,8 @@ int is_digit(char *string)
 	}
 	return (1);
 }
+
+
 /**
  * isnumber - checks if a string is a number
  * @str: provided string
@@ -39,5 +44,33 @@ int isnumber(char *str)
 			return (0);
 
 	return (1);
+}
+
+
+/**
+ * file_error - prints file error message and exits
+ * @argv: argv given by main()
+ *
+ * Desc: print msg if  not possible to open the file
+ * Return: nothing
+ */
+void file_error(char *argv)
+{
+	fprintf(stderr, "Error: Can't open file %s\n", argv);
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * error_usage - prints usage message and exits
+ *
+ * Desc: if user does not give any file or more than
+ * one argument to your program
+ *
+ * Return: nothing
+ */
+void error_usage(void)
+{
+	fprintf(stderr, "USAGE: monty file\n");
+	exit(EXIT_FAILURE);
 }
 

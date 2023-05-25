@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#define INSTRUCTIONS              \
+#define OPCODE_FUNCS              \
 	{                           \
 		{"push", push},       \
 		    {"pall", pall},   \
@@ -57,25 +57,33 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
-* struct help - argument for the current opcode
-* @data_struct: stack mode, stack (default) and queue
-* @argument: the arguments of the string
+* struct cu_opcode - argument for the current opcode
+* @data: stack or queue mode, stack (default)
+* @arg: the arguments of the string
 *
 * Description: global structure used to pass data around the functions easily
 */
-typedef struct help
+typedef struct cu_opcode
 {
-	int data_struct;
-	char *argument;
-} help;
-help global;
+	int data;
+	char *arg;
+} cu_opcode;
+cu_opcode glbal;
 
-/* stack utility functions available in linked_list.c */
+/*Linkded lists utilities*/
 stack_t *add_node(stack_t **stack, const int n);
 stack_t *queue_node(stack_t **stack, const int n);
 void free_stack(stack_t *stack);
 size_t print_stack(const stack_t *stack);
 
+
+/*Utils functions*/
+int is_digit(char *string);
+int isnumber(char *str);
+void file_error(char *argv);
+void error_usage(void);
+
+/*Opcodes functions*/
 void push(stack_t **stack, unsigned int line_cnt);
 void pall(stack_t **stack, unsigned int line_cnt);
 void pint(stack_t **stack, unsigned int line_cnt);
@@ -95,8 +103,5 @@ void rotl(stack_t **stack, unsigned int line_count);
 void rotr(stack_t **stack, unsigned int line_count);
 
 void opcode(stack_t **stack, char *str, unsigned int line_cnt);
-
-int is_digit(char *string);
-int isnumber(char *str);
 
 #endif /* MONTY_H */

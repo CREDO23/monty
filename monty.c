@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	stack_t *stack = NULL;
 	unsigned int line_cnt = 1;
 
-	global.data_struct = 1;  /* struct defined in monty.h L58*/
+	glbal.data = 1;  /* struct defined in monty.h L58*/
 	if (argc != 2)
 		error_usage(); /* def in line 82 */
 
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 			line_cnt++;
 			continue;
 		}
-		global.argument = strtok(NULL, " \t\n");
+		glbal.arg = strtok(NULL, " \t\n");
 		opcode(&stack, str, line_cnt);
 		line_cnt++;
 	}
@@ -58,29 +58,3 @@ int main(int argc, char **argv)
 	exit(EXIT_SUCCESS);
 }
 
-/**
- * file_error - prints file error message and exits
- * @argv: argv given by main()
- *
- * Desc: print msg if  not possible to open the file
- * Return: nothing
- */
-void file_error(char *argv)
-{
-	fprintf(stderr, "Error: Can't open file %s\n", argv);
-	exit(EXIT_FAILURE);
-}
-
-/**
- * error_usage - prints usage message and exits
- *
- * Desc: if user does not give any file or more than
- * one argument to your program
- *
- * Return: nothing
- */
-void error_usage(void)
-{
-	fprintf(stderr, "USAGE: monty file\n");
-	exit(EXIT_FAILURE);
-}

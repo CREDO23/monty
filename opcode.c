@@ -15,16 +15,16 @@ void opcode(stack_t **stack, char *str, unsigned int line_cnt)
 {
 	int i = 0;
 
-	instruction_t op[] = INSTRUCTIONS;
+	instruction_t op[] = OPCODE_FUNCS;
 
 	if (!strcmp(str, "stack"))
 	{
-		global.data_struct = 1;
+		glbal.data = 1;
 		return;
 	}
 	if (!strcmp(str, "queue"))
 	{
-		global.data_struct = 0;
+		glbal.data = 0;
 		return;
 	}
 
